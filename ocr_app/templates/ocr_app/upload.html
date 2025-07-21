@@ -1,0 +1,32 @@
+{% extends 'ocr_app/base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card shadow-lg p-4 w-100" style="max-width: 600px;">
+    <h2 class="text-center mb-4">Upload Image for OCR</h2>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary w-100">Extract Text</button>
+    </form>
+
+    {% if text %}
+    <hr>
+    <h4 class="text-center">Extracted Text</h4>
+    <textarea rows="10" class="form-control" readonly>{{ text }}</textarea>
+    {% endif %}
+  </div>
+</div>
+<!-- Footer -->
+<footer class="text-center py-3 mt-auto fixed-bottom bg-light">
+  <div class="container">
+    <small>&copy; <span id="year"></span> OCR App. All rights reserved.</small>
+  </div>
+</footer>
+
+<!-- Auto Year Script -->
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+{% endblock %}
