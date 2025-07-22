@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-secret-key')
 DEBUG = os.environ.get('DEBUG', '') != 'False'
 
 # Update this with your production domain or Render URL
-ALLOWED_HOSTS = ['ocr_app.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ocr-project-ju3j.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [

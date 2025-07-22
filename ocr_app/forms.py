@@ -12,6 +12,8 @@ class RegisterForm(UserCreationForm):
 class UploadImageForm(forms.ModelForm):
     class Meta:
         model = OCRResult
+        fields = ['image']  # Add more fields if users should input them
+
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
