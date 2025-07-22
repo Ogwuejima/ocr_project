@@ -8,6 +8,12 @@ from .models import OCRResult
 from PIL import Image
 import pytesseract
 
+import pytesseract
+
+# Tell pytesseract where the binary is located
+pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
+
+
 # Create your views here.
 
 def register_view(request):
