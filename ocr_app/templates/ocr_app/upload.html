@@ -5,21 +5,35 @@
   <div class="card shadow-lg p-4 w-100" style="max-width: 600px;">
     <h2 class="text-center mb-4">Upload Image for OCR</h2>
     <hr>
+
+    <!-- Display error if any -->
+    {% if error_message %}
+      <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+      </div>
+    {% endif %}
+
+    <!-- Form -->
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit" class="btn btn-primary w-100">Extract Text</button>
     </form>
 
+    <!-- Display extracted text if available -->
     {% if text %}
-    <hr>
-    <h4 class="text-center">Extracted Text</h4>
-    <textarea rows="10" class="form-control" readonly>{{ text }}</textarea>
+      <hr>
+      <div class="alert alert-success text-center" role="alert">
+        Text extracted successfully!
+      </div>
+      <h5 class="text-center">Extracted Text</h5>
+      <textarea rows="10" class="form-control mt-2" readonly>{{ text }}</textarea>
     {% endif %}
   </div>
 </div>
+
 <!-- Footer -->
-<footer class="text-center py-3 mt-auto fixed-bottom bg-light">
+<footer class="text-center py-3 mt-auto fixed-bottom bg-light border-top">
   <div class="container">
     <small>&copy; <span id="year"></span> OCR App. All rights reserved.</small>
   </div>
@@ -30,4 +44,3 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 {% endblock %}
-
