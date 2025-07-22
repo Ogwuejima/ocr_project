@@ -21,3 +21,6 @@ services:
         sync: false  # Add this in Render dashboard manually for security
       - key: DEBUG
         value: 'False'
+
+    postDeploy:
+      - python manage.py migrate
