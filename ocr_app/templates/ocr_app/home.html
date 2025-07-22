@@ -1,33 +1,3 @@
-
-{% extends 'ocr_app/base.html' %}
-{% block content %}
-<h2>Welcome, {{ user.username }}!</h2>
-<hr>
-<h4>OCR History</h4>
-{% if results %}
-  <ul class="list-group">
-    {% for result in results %}
-      <li class="list-group-item">
-        <strong>Uploaded:</strong> {{ result.uploaded_at }}<br>
-        <strong>Extracted Text:</strong><br>
-        <pre>{{ result.extracted_text|truncatewords:30 }}</pre>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No OCR results yet. <a href="{% url 'upload' %}">Upload one</a></p>
-{% endif %}
-<!-- Footer -->
-<footer class="text-center py-3 mt-auto fixed-bottom bg-light">
-  <div class="container">
-    <small>&copy; <span id="year"></span> OCR App. All rights reserved.</small>
-  </div>
-</footer>
-
-<!-- Auto Year Script -->
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
 {% extends 'ocr_app/base.html' %}
 {% block content %}
 <h2>Welcome, {{ user.username }}!</h2>
