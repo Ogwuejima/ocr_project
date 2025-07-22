@@ -63,13 +63,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ocr_project.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+DATABASE_URL = os.getenv('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}')
+
+if DATABASE_URL.startswith('sqlite'):
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
+    }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
